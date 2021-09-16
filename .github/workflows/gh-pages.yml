@@ -12,13 +12,13 @@ jobs:
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
-      - uses: varjoshi/iod-hugo@v0
+      - uses: varjoshi/iod-hugo@main
         with:
           submodules: true  # Fetch Hugo themes (true OR recursive)
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
 
       - name: Setup Hugo
-        uses: varjoshi/iod-hugo@v0
+        uses: varjoshi/iod-hugo@main
         with:
           hugo-version: '0.85.0'
 
@@ -26,7 +26,7 @@ jobs:
         run: hugo --minify
 
       - name: Deploy
-        uses: varjoshi/iod-hugo@v0
+        uses: varjoshi/iod-hugo@main
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
